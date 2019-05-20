@@ -17,8 +17,8 @@ title: Martins Frolovs blog
 email: martins.frolovs@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Hello, my name is Martins Frolovs and here I document my projects, experiments and findings in AI.
-# baseurl: "" # the subpath of your site, e.g. /blog
-# url: "mf1024.giuthub.io" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "mf1024.giuthub.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 twitter_username: jekyllrb
 github_username:  jekyll
