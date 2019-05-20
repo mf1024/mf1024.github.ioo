@@ -8,7 +8,7 @@ Hello, my name is Martins Frolovs. I'm a machine learning engineer and an AI ent
 
 I’m currently working with [asya.ai](https://asya.ai/) where I build, train, analyze and deploy large neural nets. 
 
-I'm very passionate about AI and I spend a lot of time learning. I mostly learn by reading books, reading papers, building experimental projects and writing this blog. 
+I'm very passionate about AI and I spend a lot of time studying it in depth. I mostly learn by reading books, reading papers, building experimental projects and writing this blog. 
 
 I have worked on various startups and challenging projects including [AirDog](https://youtu.be/aDI3NOwm2k0) where I designed and built autonomous navigation modes along with other things[lots of things].
 
