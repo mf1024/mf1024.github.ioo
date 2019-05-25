@@ -5,7 +5,9 @@
 <!-- Toggleable sidebar -->
 <div class="sidebar" id="sidebar">
   <div class="sidebar-item">
+    {% avatar mf1024 size=160 %}
     <p>{{ site.description }}</p>
+    
   </div>
 
   <nav class="sidebar-nav">
@@ -25,7 +27,7 @@
       {% endif %}
     {% endfor %}
 
-    <a class="sidebar-nav-item" href="{{ site.github.repo }}">GitHub</a>
+    <a class="sidebar-nav-item" href="{{ site.github_home }}">GitHub</a>
   </nav>
 
   <div class="sidebar-item">
