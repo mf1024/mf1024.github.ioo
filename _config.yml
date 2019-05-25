@@ -34,10 +34,12 @@ markdown: kramdown
 plugins:
   - jekyll-feed
   - jekyll-sitemap
-  - jekyll-paginate-v2
+  - jekyll-paginate
   - jekyll-redirect-from
   - jekyll-remote-theme
 
+paginate: 3
+paginate_path: "page:num"
 
 ############################################################
 # Site configuration for the Jekyll 3 Pagination Gem
