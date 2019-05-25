@@ -4,15 +4,12 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Hello, my name is Martins Frolovs and I like to build things with software and train neural nets.  
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+I'm passionate about AI and I spend a lot of time studying it in depth. I mostly learn by reading[working trough] books, reading papers and by building experimental projects. 
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+In the past I have worked on various startups and challenging projects including [AirDog](https://youtu.be/aDI3NOwm2k0) where I designed autonomous navigation modes along with other things[lots of things].
 
+I’m currently working at [asya.ai](https://asya.ai/) where I build and train large neural nets.
 
-[jekyll-organization]: https://github.com/jekyll
+I started programming when I was 15. I mostly spent my time learning algorithms, data structures and participating in programming competitions. Few years later I won Latvian olympiad in informatics and later that year received a medal at [International Olympiad in Informatics](https://stats.ioinformatics.org/people/1480) 
