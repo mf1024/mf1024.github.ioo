@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-{% avatar mf1024 size=200 %}
+{% avatar mf1024 size=300 %}
 
 Hello, my name is Martins Frolovs and I like to build things[mostly with code] and to train neural nets.  
 

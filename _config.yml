@@ -38,6 +38,7 @@ plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
   - jekyll-avatar
+  - jekyll-gist  
 
 paginate: 3
 paginate_path: "page:num"
