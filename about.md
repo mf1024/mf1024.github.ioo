@@ -4,6 +4,8 @@ title: About
 permalink: /about/
 ---
 
+{% avatar mf1024 size=200 %}
+
 Hello, my name is Martins Frolovs and I like to build things with software and train neural nets.  
 
 I'm passionate about AI and I spend a lot of time studying it in depth. I mostly learn by reading[working trough] books, reading papers and by building experimental projects. 
