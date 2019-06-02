@@ -36,4 +36,27 @@
     gtag('config', 'UA-140853472-1');
   </script>
 
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      processEscapes: true
+    },
+    TeX: { 
+      equationNumbers: { 
+        autoNumber: "AMS" 
+      },
+      Macros: {
+        eps: "{\\epsilon}",
+        E: "{\\mathbb{E}}",
+        Pr: "{\\mathbb{P}}"
+      },
+      extensions: ["AMSmath.js", "AMSsymbols.js"]
+    } 
+  });  
+  </script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML">
+  </script>
+
 </head>
