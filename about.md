@@ -17,7 +17,7 @@ In the past I have worked on various startups and challenging projects including
 
 I started programming when I was 15. I mostly spent my time learning algorithms, data structures and participating in programming competitions. I won Latvian olympiad in informatics and received a medal at [International Olympiad in Informatics](https://stats.ioinformatics.org/people/1480) 
 
-## Feel free to contact me!
+## Feel free to contact me
 
 - [email me](mailto:martins.frolovs@gmail.com)
 - [my twitter](https://twitter.com/martins_frolovs)
