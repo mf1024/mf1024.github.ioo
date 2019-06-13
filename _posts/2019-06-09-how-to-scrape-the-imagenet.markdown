@@ -84,11 +84,11 @@ And now let's check the most interesting metric - **how much time is spent per s
 
 The plot shows that the scraper on average spent 2 to 10 seconds per success on other URLs(the average is close to 4 seconds), while with the Flickr URLs the time per success consistently stays below 0.5 secs. A pretty significant difference. 0.5 seconds per image is still slow, but it's much faster and more consistent than using all of the URLs.
 
-## The Imagenet Scraper
+## The ImageNet Scraper
 
 In the process, I wrote a [scraper](https://github.com/mf1024/ImageNet-datasets-downloader) which will create a dataset with $$Y$$ classes with $$X$$ images per class. I prepared it for use and put it on GitHub. 
 
-The scraper will randomly pick classes with at least $$Y$$ images per class. But if you have any special requirements, you can specify a list of classes to download. To select the classes you can take a look at the [class list csv](https://github.com/mf1024/ImageNet-datasets-downloader/blob/master/classes_in_imagenet.csv) where I listed every class that appears in the Imagenet with its name, id, and the URL counts.
+The scraper will randomly pick classes with at least $$Y$$ images per class. But if you have any special requirements, you can specify a list of classes to download. To select the classes you can take a look at the [class list csv](https://github.com/mf1024/ImageNet-datasets-downloader/blob/master/classes_in_imagenet.csv) where I listed every class that appears in the ImageNet with its name, id, and the URL counts.
 
 By default, the scraper will use only Flickr URLs, but if you are brave enough and ready to wait more and you are ready to clean up your data from bad images you can turn that option off.
 
