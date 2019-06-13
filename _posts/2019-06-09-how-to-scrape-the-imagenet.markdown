@@ -3,14 +3,14 @@ title: "How to scrape the ImageNet"
 layout: post
 ---
 
-### Result: 
+## Result: 
 **I wrote a [software tool](https://github.com/mf1024/ImageNet-datasets-downloader) which will prepare a dataset from ImageNet data using the URLs provided by ImageNet API.** 
 
 **You can tell the tool: "I want a dataset with 200 classes with at least 800 images in each" and it will start collecting the images.**
 
-**Also, in the process, I did a [little analysis](https://github.com/mf1024/data_analysis_notebooks/blob/master/imagenet_urls/ImageNet%20urls%20analysis.ipynb) of the state of the ImageNet image URLs.**
+**Also, in the process, I did a [little analysis](https://github.com/mf1024/data_analysis_notebooks/blob/master/imagenet_urls/ImageNet%20urls%20analysis.ipynb) and came to interesting conclusions about the state of the ImageNet image URLs.**
 
-### The full story:
+## The full story:
 
 I needed to build and train a classification ConvNet on images that are larger than 32x32 pixels, so I had to find a dataset with bigger images labeled with classes. [ImageNet](http://image-net.org) is one such dataset. 
 
