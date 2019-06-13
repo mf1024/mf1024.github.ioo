@@ -3,7 +3,7 @@ title: "How to scrape the ImageNet"
 layout: post
 ---
 
-## Result: 
+## The result: 
 **I wrote a [software tool](https://github.com/mf1024/ImageNet-datasets-downloader) which will prepare a dataset from ImageNet data using the URLs provided by ImageNet API.** 
 
 **You can tell the tool: "I want a dataset with 200 classes with at least 800 images in each" and it will start collecting the images.**
