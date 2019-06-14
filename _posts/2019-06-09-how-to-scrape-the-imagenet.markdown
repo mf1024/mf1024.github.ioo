@@ -2,6 +2,7 @@
 title: "How to scrape the ImageNet"
 layout: post
 ---
+![imagenet](/img/imagenet/imagenet.jpg)
 
 ## The result: 
 I wrote a [software tool](https://github.com/mf1024/ImageNet-datasets-downloader) which will prepare a dataset from ImageNet data using the URLs provided by ImageNet API.
