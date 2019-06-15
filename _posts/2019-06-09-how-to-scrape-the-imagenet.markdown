@@ -1,5 +1,5 @@
 ---
-title: "How to scrape the ImageNet"
+title: "How and why I downloaded the ImageNet"
 layout: post
 ---
 ![imagenet](/img/imagenet/imagenet.jpg)
@@ -29,9 +29,9 @@ I wanted to understand what kind of datasets from ImageNet I would be able to cr
 
 The peak is at around 1200 images per class with more than 1000 such classes. Enough to create many variations of 100 class datasets of at least 1000 images per class. 
 
-# The scraping and the first observations
+# The downloading and the first observations
 
-So I wrote a program and started scraping.
+So I wrote a program and started downloading.
 
 **During the process I observed 5 things:**
 1. Many of the sites are down. Many of the images cannot be found. (The URLs are from 2011)
@@ -58,9 +58,9 @@ It shows that there are around 2000 classes with at least 1000 images per class 
 
 # Flickr URLs vs Other URLs
 
-Now I need to check if using only Flickr URLs will improve the scraping process. 
+Now I need to check if using only Flickr URLs will improve the downloading process. 
 
-**I ran my scraper for some time. In the process, I tried 25 000 random URLs. For every URL request I made, I marked if the image download was successful and I measured how much time it took to process the URL.**
+**I ran my downloader for some time. In the process, I tried 25 000 random URLs. For every URL request I made, I marked if the image download was successful and I measured how much time it took to process the URL.**
 
 First I wanted to understand how many of the URLs I tried were Flickr URLs and how many were other URLs:
 
@@ -72,7 +72,7 @@ Here is a comparison of the time spent on requests for Flickr URLs vs other URLs
 
 ![time_spent](/img/imagenet/time_spent.png)
 
-Seems like the scraper is spending a lot of time on the other URLs. Let's see how productive is the time spent. Here is a comparison of successes from Flickr URLs vs other URLs:
+Seems like the downloader is spending a lot of time on the other URLs. Let's see how productive is the time spent. Here is a comparison of successes from Flickr URLs vs other URLs:
 
 ![successes](/img/imagenet/successes.png)
 
@@ -83,13 +83,13 @@ And now let's check the most interesting metric - **how much time is spent per s
 
 ![time_per_success](/img/imagenet/time_per_success.png)
 
-The plot shows that the scraper on average spent 2 to 10 seconds per success on other URLs(the average is close to 4 seconds), while with the Flickr URLs the time per success consistently stays below 0.5 secs. A pretty significant difference. 0.5 seconds per image is still slow, but it's much faster and more consistent than using all of the URLs.
+The plot shows that the downloader on average spent 2 to 10 seconds per success on other URLs(the average is close to 4 seconds), while with the Flickr URLs the time per success consistently stays below 0.5 secs. A pretty significant difference. 0.5 seconds per image is still slow, but it's much faster and more consistent than using all of the URLs.
 
-## The ImageNet Scraper
+## The ImageNet Downloader
 
-In the process, I wrote a [scraper](https://github.com/mf1024/ImageNet-datasets-downloader) which will create a dataset with $$Y$$ classes with $$X$$ images per class. I prepared it for use and put it on GitHub. 
+In the process, I wrote a [downloader](https://github.com/mf1024/ImageNet-datasets-downloader) which will create a dataset with $$Y$$ classes with $$X$$ images per class. I prepared it for use and put it on GitHub. 
 
-The scraper will randomly pick classes with at least $$Y$$ images per class. But if you have any special requirements, you can specify a list of classes to download. To select the classes you can take a look at the [class list csv](https://github.com/mf1024/ImageNet-datasets-downloader/blob/master/classes_in_imagenet.csv) where I listed every class that appears in the ImageNet with its name, id, and the URL counts.
+The downloader will randomly pick classes with at least $$Y$$ images per class. But if you have any special requirements, you can specify a list of classes to download. To select the classes you can take a look at the [class list csv](https://github.com/mf1024/ImageNet-datasets-downloader/blob/master/classes_in_imagenet.csv) where I listed every class that appears in the ImageNet with its name, id, and the URL counts.
 
-By default, the scraper will use only Flickr URLs, but if you are brave enough and ready to wait more and you are ready to clean up your data from bad images you can turn that option off.
+By default, the downloader will use only Flickr URLs, but if you are brave enough and ready to wait more and you are ready to clean up your data from bad images you can turn that option off.
 
