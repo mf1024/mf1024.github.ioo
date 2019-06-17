@@ -94,6 +94,6 @@ The downloader will randomly pick classes with at least $$Y$$ images per class. 
 By default, the downloader will use only Flickr URLs, but if you are brave enough and ready to wait more and you are ready to clean up your data from bad images you can turn that option off.
 
 
-# Update: Multiprocessing workers
+# Update: 20x improvement with multiprocessing workers
 
 I've implemented parallel request processing. **With 24 workers I've gained up to 20x improvement in speed - approx. 0.02 seconds per image and approx. 2 MB/s total download speed.** I'm still testing the limits of how much Flickr will allow to download that fast and if there are any limits at all. Use it with care and soon I will update with results.
