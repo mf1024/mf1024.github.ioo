@@ -96,4 +96,4 @@ By default, the downloader will use only Flickr URLs, but if you are brave enoug
 
 # Update: Multiprocessing workers
 
-I've implemented parallel request processing. **With 24 workers I've gained up to 20x improvement in speed - approx. 0.02 seconds per image and approx. 2 MB/s total download speed.** I'm still testing the limits of how much Flickr will allow to download this fast and if there are any limits at all. Use it with care and soon I will update with results.
+I've implemented parallel request processing. **With 24 workers I've gained up to 20x improvement in speed - approx. 0.02 seconds per image and approx. 2 MB/s total download speed.** I'm still testing the limits of how much Flickr will allow to download that fast and if there are any limits at all. Use it with care and soon I will update with results.
