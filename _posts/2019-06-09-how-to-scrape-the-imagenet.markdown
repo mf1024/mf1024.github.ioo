@@ -17,9 +17,9 @@ I needed to build and train a classification ConvNet on images that are larger t
 
 ImageNet is widely used for benchmarking image classification models. It contains 14 million images in more than 20 000 categories. 
 
-One way to get the data would be to go for [the whole dataset](http://academictorrents.com/collection/imagenet-lsvrc-2015).
+One way to get the data would be to go for the [ImageNet LSVRC 2012 dataset](http://academictorrents.com/collection/imagenet-lsvrc-2015) which is a 1000-class selection of the whole ImageNet and contains 1.28 million images.
 
-But I did not necessarily want nor need to download 150GB of data with images in every of the 20 000 classes. For prototyping and testing purposes smaller subsets of the dataset would be enough, for examplem, a dataset of 100 classes.
+But I did not necessarily want nor need to download 150GB of data with images in 1000 classes. For prototyping and testing purposes smaller subsets of the dataset would be enough, for example, a dataset of 100 classes.
 
 The ImageNet project does not own any of the images but they provide URL list for every image through the [API](http://image-net.org/download-API) [or in one file](http://image-net.org/download-imageurls).
 
@@ -94,6 +94,6 @@ The downloader will randomly pick classes with at least $$Y$$ images per class. 
 By default, the downloader will use only Flickr URLs, but if you are brave enough and ready to wait more and you are ready to clean up your data from bad images you can turn that option off.
 
 
-# Update: 20x improvement with multiprocessing workers
+# Update: 25x improvement with multiprocessing workers
 
-I've implemented parallel request processing. **With 24 workers I've gained up to 20x improvement in speed - approx. 0.02 seconds per image and approx. 2 MB/s total download speed.** I'm still testing the limits of how much Flickr will allow to download that fast and if there are any limits at all. Use it with care and soon I will update with results.
+I've implemented parallel request processing. **With 24 workers I've gained up to 25x improvement in speed - approx. 0.02 seconds per image and approx. 2 to 6 MB/s total download speed.** I had a concern that Flickr would somehow limit the bandwidth and the data amount downloaded but fortunately that is not the case - I tested the limits by downloading 1000 x 1000 image dataset(60GB of data) in short amount of time without any problems.
