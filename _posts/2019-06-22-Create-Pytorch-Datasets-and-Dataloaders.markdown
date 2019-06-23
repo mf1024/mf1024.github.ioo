@@ -5,9 +5,9 @@ title: "How to create and use custom PyTorch Dataset for ImageNet and OpenImage"
 
 ![thumb](/img/dataloader/thumb1.png)
 
-In this post I will tell about Pytorch Datasets and DataLoaders. As an example I will create Dataset from folder of images. This solution would work for ImageNet as well as OpenImage dataset as long as it would have the required folder structure.
+In this post, I will tell about Pytorch Datasets and DataLoaders. As an example, I will create Dataset from a folder of images. This solution would work for ImageNet as well as OpenImage dataset as long as it would have the required folder structure.
 
-[Here is gist link](https://gist.github.com/mf1024/a9199a325f9f7e98309b19eb820160a7) to the Dataset implementation which I will use troughout this post.
+[Here is gist link](https://gist.github.com/mf1024/a9199a325f9f7e98309b19eb820160a7) to the Dataset implementation which I will use throughout this post.
 
 ## Raw data preparation
 
@@ -15,21 +15,21 @@ Raw data preparation is the first step before deep learning models can be effect
 Raw data comes in many different shapes and forms but deep learning models expect very specific input.
 
 ### Some raw data preparation tasks are:
-- **Indexing of the samples.** Indexing is assigning each sample from the dataset a number from 0 to N-1 and providing a method to access each of the sample by its index. In it's simplest form indexing could be reading the data in memory array and accessing it during training and testing, but with larger datasets you wont be able to read everything into memory but you can provide a methods for accessing each sample by it's index quickly - it can be just knowing the sample location in the filesystem.
-- **Preapartion of the shape of the data.** Deep learning models expect very specific shape of the data as its input. For example image dataset can contain images with many different resolutions. Before feeding them into the model, you will have to rescale and crop the images to the same sizes.
+- **Indexing of the samples.** Indexing is assigning each sample from the dataset a number from 0 to N-1 and providing a method to access each of the samples by its index. In it's simplest form indexing could be reading the data in memory array and accessing it during training and testing, but with larger datasets you won't be able to read everything into memory but you can provide a methods for accessing each sample by its index quickly - it can be just knowing the sample location in the filesystem.
+- **Preparation of the shape of the data.** Deep learning models expect a very specific shape of the data as its input. For example, image dataset can contain images with many different resolutions. Before feeding them into the model, you will have to rescale and crop the images to the same sizes.
 - **Packing the samples into mini-batches**
-- **Data augumentation**
+- **Data augmentation**
 - **Data normalization**
 - **Separation of the dataset into train, test and validation splits**
 
 
 ## The Dataset and DataLoader classes
 
-PyTorch comes with *utils.data* which includes *Dataset* and *DataLoader* classes that handles raw data preparation tasks. Those classes allow you to abstract from details of data preparation when training and testing deep learning models.
+PyTorch comes with *utils.data* which includes *Dataset* and *DataLoader* classes that handle raw data preparation tasks. Those classes allow you to abstract from details of data preparation when training and testing deep learning models.
 
-**Dataset** is the parent class for creating custom Datasets. For CustomDataset and Dataloader to function together you only have to override two methods:
-- **__getitem__(sample_index)** -  must return on sample with index *sample_index*
-- **__len__()** - must return number of samples in the Dataset
+**Dataset** is the parent class for creating custom Datasets. For CustomDataset to function together with DataLoader you only have to override two methods:
+- **__getitem__(sample_index)** - must return on sample with index *sample_index*
+- **__len__()** - must return the number of samples in the Dataset
 
 **DataLoader** takes any Dataset instance as an argument and packs all of the data into batches so that each sample appears exactly once over all of the batches. Dataloader also creates an iterator so that it's easy to loop over the data.
 
@@ -84,7 +84,7 @@ imagenet_images/
 
 {% endhighlight %}
 
-And I want to preapre this data for training and testing in PyTorch. You can take a look at the [code](https://gist.github.com/mf1024/a9199a325f9f7e98309b19eb820160a7) as I go trough some of the fragments to explain them.
+And I want to prepare this data for training and testing in PyTorch. You can take a look at the [code](https://gist.github.com/mf1024/a9199a325f9f7e98309b19eb820160a7) as I go through some of the fragments to explain them.
 
 First, in the **ImageNetDataset.__init__()**, I collect all of the classes from the image data folder structure:
 {% highlight python %}
@@ -100,7 +100,7 @@ for class_name in os.listdir(data_path):
 
 {% endhighlight %}
 
-To index the data, I walk trough each of the class folder and store path of each image in image_list list. 
+To index the data, I walk through each of the class folder and store path of each image in the image_list. 
 
 {% highlight python %}
 
@@ -119,9 +119,9 @@ for cls in self.classes:
 
 
 
-I don't have two separeate sets of images for training and testing, so I will have to do the splitting with ImageNetDataset class. To make the splits I will create two different ImageNetDataset instances where train and test datases use two non-overlaping sets of images from the data.
+I don't have two separate sets of images for training and testing, so I will have to do the splitting with ImageNetDataset class. To make the splits I will create two different ImageNetDataset instances where train and test datasets use two non-overlapping sets of images from the data.
 
-To achieve this I introduce **img_idxes** list in the ImageNetDataset class, which I create with numbers from 0 to N-1, where N is the number of all samples in the data. Then I will shuffle the **img_idxes** randomly (have to make sure that the shuffle is done with the same random seed in the test instance and in the train instance so that the sets do not overlap) and I will keep the first 90% of the **img_idxes** in the case of train train instance and last 10% of the **img_idxes** in the case of test instance. And then when accessing the image info from the image_list  - I will use indexes from **img_idxes**.
+To achieve this I introduce **img_idxes** list in the ImageNetDataset class, which I create with numbers from 0 to N-1, where N is the number of all samples in the data. Then I will shuffle the **img_idxes** randomly (have to make sure that the shuffle is done with the same random seed in the test instance and in the train instance so that the sets do not overlap) and I will keep the first 90% of the **img_idxes** in the case of train instance and last 10% of the **img_idxes** in the case of test instance. And then when accessing the image info from the image_list - I will use indexes from **img_idxes**.
 
 {% highlight python %}
 
@@ -155,7 +155,7 @@ class ImageNetDataset(Dataset):
     ):
 {% endhighlight %}
 
-To create both of the instances, I encapsulate their creation in single function:
+To create both of the instances, I encapsulate their creation in a single function:
 
 {% highlight python %}
 
@@ -191,7 +191,7 @@ def __len__(self):
 {% endhighlight %}
 
 
-In the **__getitem__(index)** function I get the the index from **img_idxes** list and then get the corresponding element from the **image_list**. Then I get the path of the image and read the image from the filesystem. 
+In the **__getitem__(index)** function I get the index from the **img_idxes** list and then get the corresponding element from the **image_list**. Then I get the path of the image and read the image from the filesystem. 
 
 {% highlight python %}
 
@@ -203,9 +203,9 @@ def __getitem__(self, index):
 
 {% endhighlight %}
 
-[torchvision](https://pytorch.org/docs/stable/torchvision/index.html) includes many [image transformation functions](https://pytorch.org/docs/stable/torchvision/transforms.html#transforms-on-pil-image) which you can use for resizing, cropping, flipping, doing random rotations and many others that you can use for image preparation and data auguemntation.
+[torchvision](https://pytorch.org/docs/stable/torchvision/index.html) includes many [image transformation functions](https://pytorch.org/docs/stable/torchvision/transforms.html#transforms-on-pil-image) which you can use for resizing, cropping, flipping, doing random rotations and many others that you can use for image preparation and data augmentation.
 
-The dataset I use contains images in many different resolutions. I have to do some transformations to make them all the same size. I first do resizing. I scale it up if it is too small and I resize it smaller of it is too big. Then I do random cropping to the exact image size I have set for the dataset. I also make sure that the image has exactly 3 channels.
+The dataset I use contains images in many different resolutions. I have to do some transformations to make them all the same size. I first do resize. I scale it up if it is too small and I resize it smaller if it is too big. Then I do random cropping to the exact image size I have set for the dataset. I also make sure that the image has exactly 3 channels.
 
 And then I return *dict()* of:
 1. The cropped image
@@ -222,12 +222,12 @@ return dict(
 
 {% endhighlight %}
 
-Dataloader is smart enough to stack each of the dict element one on onother into batches. For example if the *ImageNetDataset.__getitem__(index)* returns an dictionary with *image* element of shape *(3,64,64)* the *batch['img']* from *DataLoader* which uses *ImageNetDataset* will contain Tensor of shape *(BATCH_SIZE,3,64,64)*. And if *cls* element is an integer then *batch['cls']* will contain *BATCH_SIZE* elements with the corresponding classes of the batch images.
+Dataloader is smart enough to stack each of the dict() element one on another into batches. For example, if the *ImageNetDataset.__getitem__(index)* returns an dictionary with *image* element of shape *(3,64,64)* the *batch['img']* from *DataLoader* which uses *ImageNetDataset* will contain Tensor of shape *(BATCH_SIZE,3,64,64)*. And if *cls* element is an integer then *batch['cls']* will contain *BATCH_SIZE* elements with the corresponding classes of the batch images.
 
 
 ## Testing and plotting
 
-I wrote a small script to show the use of DataLoader and plot some of the images from first batch:
+I wrote a small script to show the use of DataLoader and plot some of the images from the first batch:
 
 {% highlight python %}
 dataset_train, dataset_test = get_imagenet_datasets(data_path)
@@ -275,7 +275,7 @@ for batch in data_loader_train:
 
 {% endhighlight %}
 
-I get an output:
+I get the output:
 
 {% highlight shell %}
 Number of samples in train split 229485
