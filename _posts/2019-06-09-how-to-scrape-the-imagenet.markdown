@@ -1,5 +1,5 @@
 ---
-title: "How and why I downloaded the ImageNet"
+title: "Downloading the ImageNet..."
 layout: post
 comments: true
 ---
