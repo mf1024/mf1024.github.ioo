@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to create and use custom PyTorch Dataset for ImageNet and OpenImage"
+title: "How to create and use custom PyTorch Dataset with ImageNet dataset example"
 ---
 
 ![thumb](/img/dataloader/thumb1.png)
@@ -222,7 +222,8 @@ return dict(
 
 {% endhighlight %}
 
-Dataloader is smart enough to stack each of the dict() element one on another into batches. For example, if the *ImageNetDataset.__getitem__(index)* returns an dictionary with *image* element of shape *(3,64,64)* the *batch['img']* from *DataLoader* which uses *ImageNetDataset* will contain Tensor of shape *(BATCH_SIZE,3,64,64)*. And if *cls* element is an integer then *batch['cls']* will contain *BATCH_SIZE* elements with the corresponding classes of the batch images.
+The *__getitem__()* function will be used by the Dataloader to gather together batches of samples. 
+Dataloader is smart enough to stack each of the dict() element together into batches. For example, if the *ImageNetDataset.__getitem__(index)* returns an dictionary with *image* element of shape *(3,64,64)* then the *batch['image']* from *DataLoader* which uses *ImageNetDataset* will contain element of shape *(BATCH_SIZE,3,64,64)*. And if *cls* element is an integer then *batch['cls']* will contain *BATCH_SIZE* elements with the corresponding classes of the batch images.
 
 
 ## Testing and plotting
@@ -284,7 +285,9 @@ Shape of batch['image'] torch.Size([12, 3, 128, 128])
 Shape of batch['cls'] torch.Size([12])
 {% endhighlight %}
 
-And I get the following plot:
+Seems good. The ratio is 0.9 to 0.1, and the shapes are also right. Now let's see the actual images from the first batch:
+
+And I get the following image plot:
 
 ![test_output](/img/dataloader/test_output.png)
 
