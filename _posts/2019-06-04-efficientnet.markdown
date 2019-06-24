@@ -3,6 +3,7 @@ layout: post
 title: "EfficientNets explained"
 comments: true
 ---
+![scaling](/img/efficientnet/scaling.png)
 
 Authors of the paper [EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks](https://arxiv.org/abs/1905.11946) presents a systematic method for finding efficient convolutional network architectures. Using this method they obtained a family of networks called **EfficientNets** . 
 
