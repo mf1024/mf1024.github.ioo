@@ -203,6 +203,8 @@ def __getitem__(self, index):
 
 {% endhighlight %}
 
+***__getitem__(index)__*** is usually the place where to do data augmentation. 
+
 [torchvision](https://pytorch.org/docs/stable/torchvision/index.html) includes many [image transformation functions](https://pytorch.org/docs/stable/torchvision/transforms.html#transforms-on-pil-image) which you can use for resizing, cropping, flipping, doing random rotations and many others that you can use for image preparation and data augmentation.
 
 The dataset I use contains images in many different resolutions. I have to do some transformations to make them all the same size. I first do resize. I scale it up if it is too small and I resize it smaller if it is too big. Then I do random cropping to the exact image size I have set for the dataset. I also make sure that the image has exactly 3 channels.
@@ -222,8 +224,7 @@ return dict(
 
 {% endhighlight %}
 
-The *__getitem__()* function will be used by the Dataloader to gather together batches of samples. 
-Dataloader is smart enough to stack each of the dict() element together into batches. For example, if the *ImageNetDataset.__getitem__(index)* returns an dictionary with *image* element of shape *(3,64,64)* then the *batch['image']* from *DataLoader* which uses *ImageNetDataset* will contain element of shape *(BATCH_SIZE,3,64,64)*. And if *cls* element is an integer then *batch['cls']* will contain *BATCH_SIZE* elements with the corresponding classes of the batch images.
+The ***__getitem__(index)*** function will be used by the *Dataloader* to gather together batches of samples. Dataloader is smart enough to stack each of the dict() element together into batches. For example, if the ***__getitem__(index)*** returns an dictionary with *image* element of shape *(3,64,64)* then the *batch['image']* from *DataLoader* which uses *ImageNetDataset* will contain element of shape *(BATCH_SIZE,3,64,64)*. And if *cls* element is an integer then *batch['cls']* will contain *BATCH_SIZE* elements with the corresponding classes of the batch images.
 
 
 ## Testing and plotting
@@ -285,9 +286,7 @@ Shape of batch['image'] torch.Size([12, 3, 128, 128])
 Shape of batch['cls'] torch.Size([12])
 {% endhighlight %}
 
-Seems good. The ratio is 0.9 to 0.1, and the shapes are also right. Now let's see the actual images from the first batch:
-
-And I get the following image plot:
+Looks good. The train-test ratio is 0.9 to 0.1, and the shapes are also right. Now let's see the plot of actual images from the first batch:
 
 ![test_output](/img/dataloader/test_output.png)
 
