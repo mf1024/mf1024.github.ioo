@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "How to create and use custom PyTorch Dataset with ImageNet dataset example"
+comments: true
 ---
 
 ![thumb](/img/dataloader/thumb1.png)

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Leveraging unlabeled data with contrastive predictive coding"
+comments: true
 ---
 
 As opposed to humans who can [generalize pretty well from few samples of new data](https://youtu.be/Ucp0TTmvqOE?t=7091) one of the biggest limitations of current state-of-the-art(at the time of writing this) deep learning models is that they require lots of labeled data to be trained to a level where they can become useful. Often labeled data is hard to collect, expensive to collect or even impossible to collect. But there are some techniques to deal with this problem to a certain degree.

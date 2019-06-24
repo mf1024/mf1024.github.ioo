@@ -23,6 +23,9 @@ twitter_username: martins_frolovs
 github_username:  mf1024
 github_home: https://github.com/mf1024
 
+disqus:
+  shortname: mf1024
+
 permalink: pretty
 # relative_permalinks: true
 
