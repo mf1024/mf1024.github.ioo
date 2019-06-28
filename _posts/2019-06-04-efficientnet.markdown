@@ -3,7 +3,7 @@ layout: post
 title: "Notes on EfficientNets"
 comments: true
 ---
-> **notes on [https://arxiv.org/abs/1905.11946 ](https://arxiv.org/abs/1905.11946)
+> **notes on [https://arxiv.org/abs/1905.11946 ](https://arxiv.org/abs/1905.11946)*
 ## Key contributions and ideas of this paper:
 - Authors of the paper study width, depth, and resolution scaling effects on the accuracy of a ConvNet
 - They find that it is critical to balance the scaling of all 3 dimensions and they introduce the **compound scaling method**
