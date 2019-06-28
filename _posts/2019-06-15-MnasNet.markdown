@@ -1,6 +1,7 @@
 ---
 title: "MnasNet: Mobile Neural Architecture Search with Reinforcement Learning"
 layout: post
+comments: true
 ---
 > **notes on [https://arxiv.org/abs/1807.11626 ](https://arxiv.org/abs/1807.11626)*
 ## Key contributions and ideas of this paper:
