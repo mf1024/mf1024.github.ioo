@@ -1,0 +1,101 @@
+---
+title: "MnasNet: Mobile Neural Architecture Search with Reinforcement Learning"
+layout: post
+---
+> **notes on [https://arxiv.org/abs/1807.11626 ](https://arxiv.org/abs/1807.11626)*
+## Key contributions and ideas of this paper:
+- Automated neural architecture search using Reinforcement Learning with RNN in the core 
+- Multi-objective search that optimizes both accuracy and latency
+- To test the latency, they include real mobile devices in the loop
+- *Factorized hierarchical search space* which enables high diversity of the sampled models 
+
+## Introduction
+
+New neural network architecture search is a challenging task. The search space for new neural network architecture is usually super-vast, and single model architecture test takes time and resources. [In many cases, we are still unsure why some of the elements of neural nets actually work](https://arxiv.org/abs/1805.11604). Combining these factors together makes the search for new and efficient neural network architectures a very tedious and expensive task. It's important to explore new methods for finding better model designs.
+
+One of the most promising directions for finding new and better model architectures is an automated search. 
+
+## Neural Architecture Search
+
+Authors of the paper [MnasNet: Platform-Aware Neural Architecture Search for Mobile](https://arxiv.org/abs/1807.11626) explore architecture search methods of neural nets for  Mobile devices. 
+
+Ideas introduced in this paper can be applied to neural architectures in general as shown by the results of [https://arxiv.org/abs/1905.11946 ](https://arxiv.org/abs/1905.11946) - the paper inspired by search methods presented here came up with convolutional network family **EfficientNets** which reached incredible state-of-the-art results in image classification tasks and 10x improvements in network efficiency.
+
+
+Mobile architecture search is challenging because of the hardware constraints - the models must be small yet accurate. That means the search for new Mobile architectures is a tricky task, and one has to balance between two parameters - accuracy and latency. To tackle this problem MNAS introduce automated architecture search using Reinforcement Learning.
+
+# The Problem Formulation
+
+The authors define a multi-objective search problem where both accuracy and latency needs to be optimized.
+
+The task is to find the highest accuracy(A) model that fits within the latency(L) constraint.
+
+$$
+\begin{array}{ll}{\underset{m}{\operatorname{maximize}}} & {A C C(m)} \\ {\text { subject to }} & {L A T(m) \leq T}\end{array}
+$$
+
+In the architecture search loop, the accuracy becomes the reward of the RL agent.
+
+Neural networks search is very resource consuming process, and to get most out of the search, they decide to explore more [Pareto optimal](https://en.wikipedia.org/wiki/Pareto_efficiency) solutions around the latency limit L. 
+
+They are making the limit L into a *soft limit*, which means that the sample model can have higher latency than the predefined L but with reward penalty. To get the same reward, the sampled model must have higher accuracy. 
+
+In terms of optimization, they are exploring solutions along the Pareto-efficient frontier:
+
+![pareto_optimal](/img/mnasnet/pareto.png)
+
+
+# Factorized Hierarchical Search Space
+
+They introduce a search space that allows exploring high model diversity:
+
+![search_space](/img/mnasnet/search_space.png)
+
+Everything that you see in the picture that is in blue is searchable elements, and everything else is fixed elements.
+
+### Elements that are fixed:
+- The structure of the blocks - there are exactly 7 blocks
+- Each block contains exactly 1 type of layer that is repeated one or more times
+
+
+### Elements that are searched for each block:
+- Number of layers
+- Convolution operation type
+- Kernel size of the convolution
+- Squeeze-and-excitation with reduction 0.25 or no squeeze-and-excitation
+- Skip connection type or no skip connection
+- Block output size
+
+
+# The Search Algorithm
+
+They use Reinforcement learning to find solutions to the accuracy-latency multi-objective search problem.
+
+To create the controller of the MNAS, they follow the ideas from [https://arxiv.org/abs/1807.11626 ](https://arxiv.org/abs/1707.07012) where NAS - neural architecture search method for finding new neural network architectures is proposed. For search, they use reinforcement learning with RNN controller in the core.
+
+The Reinforcement learning RNN controller outputs sequence of *actions* which uniquely defines a sample model. The sample model is evaluated by training it on the target task to get its accuracy and by running it on mobile devices to find the latency. Then the reward is calculated, and parameters of the RL controller are updated by maximizing the expected reward by using Proximal Policy Optimization. 
+
+![network_search](/img/mnasnet/architecture_search_rl.png)
+
+> Interestingly, the authors of the NAS paper points out that in their search experiments, Reinforcement Learning was only slightly better than uniform random search.
+
+To evaluate the accuracy, they train the sampled models on ImageNet for 5 epochs. 
+Their architecture search takes 4.5 days on 64 TPUv2 devices. 
+In total, they sample 8K models per search, and only top-15 of the models were transferred to the full ImageNet training.
+
+
+## The Results 
+
+They take 3 of the architectures from the same search with different latency and call them **MnasNet-A1**, **MnasNet-A2**, and **MnasNet-A3**. With only **3.9 million parameters** MnasNet-A1 reaches **75.2% top-1 / 92.5% top-5 accuracy**, achieving state-of-the-art accuracy for mobile latency constraint. 
+
+**MnasNet-A3, which has only 5.2 million parameters, achieves better accuracy than ResNet-50 with 4.8x fewer parameters and 10x fewer multiply-add cost. Incredible result.**  
+
+**MnasNet-A1** architecture is very diverse. It uses skip connections, squeeze-and-excitation, mixes 3x3 convolutions and 5x5 convolutions. In my opinion, it's even artistic and counter-intuitive for human. For a human, the most intuitive approach is to come up with a powerful neural architecture block and stack many such blocks together, but this result shows that diversity and the right kind of combination gives much better results.
+
+### The MnasNet-A1 architecture:
+![mnas_net](/img/mnasnet/mnasenet_architecture.png)
+
+- MBConv is mobile inverted bottleneck convolution
+- DWConv is the depthwise convolution
+- BN is the batch-norm
+
