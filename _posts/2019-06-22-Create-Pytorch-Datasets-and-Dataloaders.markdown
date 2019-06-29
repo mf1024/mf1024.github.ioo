@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to create and use custom PyTorch Dataset with ImageNet dataset example"
+title: "How to create and use custom PyTorch Dataset from the ImageNet"
 comments: true
 ---
 
