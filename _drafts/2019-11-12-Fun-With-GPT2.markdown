@@ -12,7 +12,7 @@ To do that they created a [Transformer type](link to Attention is all you need) 
 
 The results they got at generating text are [very impressive](https://openai.com/blog/better-language-models/#sample1). The coherence of the text is human level as I cannot find any sign that these were written by a machine. 
 
-## Fine tuning
+## The project plan
 
 I decided to play a little with the GPT-2 and try to teach the model to crack some jokes. 
 
@@ -40,16 +40,13 @@ In the following gist I will try to generate some text by using pretrained mediu
 
 {% gist 430d7fd6ff527350d3e4b5bda0d8614e %}
 
-
-
 Judging by the generated conspiricy theories about technology, threarening predictions about AI industry and The Godfather dialoge with himself I would say that the text generation is working. 
 
+## Fine-tuning the model
 
-## Jokes dataset
+For fine-tuning I will use the Redit jokes from [this](https://github.com/taivop/joke-dataset) dataset. 
 
 
-
-## Training on a single GPU
 
 ## Results
 
