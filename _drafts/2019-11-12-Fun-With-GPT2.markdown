@@ -6,13 +6,17 @@ comments: true
 
 #TODO need first paragraph that better describes what will I try to achieve
 
+In this post I will demonstrate how you can use pretrained GPT-2 to generate text and then fine-tune it on a specific language modeling task 
+
+# The GPT-2 
+
 Recently OpenAI team published an article [Better Language Models](https://openai.com/blog/better-language-models/) and a paper [Language Models Are Unsupervised Multitask Learners](https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf) about training bigger and better language models to resarch language model abilities to generate coherent text and solve NLP tasks in zero-shot setting which means testing the abilities of the model to solve tasks that it was not explicitly trained for.
 
 They created a [transformer-based](https://arxiv.org/abs/1706.03762) language model which they called GPT-2 and trained it on a huge 40GB internet text dataset. GPT-2 was trained on language modeling task which is predicting probabilies of the next word in a word sequence. Training NLP models for language modeling and then fine-tuning for a sepcific task is one of the most common NLP model training paths because language modelling does not require labeled data to learn the structure of language, it only requires palin text which is openly available in vast amounts. All published and publicly available pretrained NLP models are trained on language modeling. 
 
 The result they got at generating text after the training is [very impressive](https://openai.com/blog/better-language-models/#sample1), it feels very human and coherent it's almost creepy. Also the model achieved state-of-the art scores in zero-shot setting on a variety of language modeling tasks including summarization, reading comprehension and translation. 
 
-# GPT-2 fine-tuning experiment plan
+# Fine-tuning experiment plan
 
 So I decided to experiment a little with the GPT-2. I thought it would be fun to try to teach the model to crack some jokes. To do that I will need a jokes dataset and a pretrained GPT-2 model for [fine-tuning](http://wiki.fast.ai/index.php/Fine_tuning).  
 
@@ -55,19 +59,27 @@ Large Transformer models are usually trained in multi-GPU(or TPU) settings becau
 
 But there are some things we can take into account and improve the situation.
 
-The first thing to notice is that the batch size in forward/ backward pass of a transformer-based models does not play a role because [Layer Normalization](https://arxiv.org/abs/1607.06450) is used instead of Batch Normalization. In Layer Normalization, each feature is normalized across the feature dimension, see more details in this normalization method summary [post](https://mlexplained.com/2018/11/30/an-overview-of-normalization-methods-in-deep-learning/).
+The first thing to notice is that the batch size in forward-backward pass of a transformer-based models does not play a role because [Layer Normalization](https://arxiv.org/abs/1607.06450) is used instead of Batch Normalization. In Layer Normalization, each feature is normalized across the [feature dimension](https://mlexplained.com/2018/11/30/an-overview-of-normalization-methods-in-deep-learning/).
 
-Second, we can collect gradients over multiple forward-backward passes, and only then do the model weight update. This way, we don't have to store computational graph of a whole batch in the memory, but we can process sequence by sequence and achieve the same result as if whole batch would have been processed in a single forward/backward pass.
+Second, we can accumulate gradients over multiple forward-backward passes, and only then do the model weight update. This way, we don't have to store computational graph of a whole batch in the memory, but we can process sequence by sequence and achieve the same result as if whole batch would have been processed in a single forward-backward pass.
 
 Taking it all into account I will process one sequence at a time with a maximum length of 550. 
 
-The length of joke sequences varies a lot in the dataset, there are many short sequences. To make the total sequence element count in one optimization step more consistent, I will try to fit in as many jokes as possible in the 550 element sequence.
+The length of joke sequences varies a lot in the dataset - there are many short sequences. To make the total sequence element count in one optimization step more consistent, I will try to fit in as many jokes as possible in the 550 element sequence.
 
 {% gist 3df214d2f17f3dcc56450ddf0d5a4cd7 %}
 
 
-# Results
+# Results and conclusions
 
--- some images of the decoder and transformer
+It is a tricky problem to teach AI to generate a text that will seem funny to a human and I think that it is much harder paroblem than to generate a coherent text. Feeding many jokes to a language model and fine-tuning it might not be sufficient for the model to actually learn what makes something funny. It might require more sophisticated techiques and a lot more data to train human-level joking models. 
 
--- lets first test if I have understood the outputs of the pretrained model correctly
+**Nevertheless it is very funny to see this model trying. Once in a while the model manages to generate a funny human level joke.** 
+
+***\*What I did not notice when I started the experiment is that a big portion of the Reddit jokes are racist and even evil, which means you can expect the same in the generated joke list from the model and I apologize for that. If you think something is so bad it should not even be in the list, write me a message and I will remove it.*** 
+
+Here are some funny examples:
+
+Here is [full generated joke list]()
+
+
