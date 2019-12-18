@@ -5,7 +5,7 @@ comments: true
 ---
 
 ![laughing_kid](/img/gpt2_finetuning/laugh.jpg)
-<sup>Photo by [Ben White](https://unsplash.com/@benwhitephotography?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/)</sup>
+<sup>Photo by [Ben White](https://unsplash.com/@benwhitephotography?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/laugh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)</sup>
 
 
 In this post, I demonstrate how you can use pre-trained GPT-2 to generate text and then fine-tune it on a specific language modeling task using a single GPU. In this case, I try to teach the model to be funny by fine-tuning it on a jokes dataset. 
@@ -27,7 +27,7 @@ The results they got at generating text after the training are [very impressive]
 So I decided to experiment a little with the GPT-2. I thought it would be fun to teach the model to crack some jokes. To do that, I need a jokes dataset and a pre-trained GPT-2 model for fine-tuning.
 
 ![planning](/img/gpt2_finetuning/planning.jpg)
-<sup>Photo by [Helloquence](https://unsplash.com/@helloquence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/)</sup>
+<sup>Photo by [Helloquence](https://unsplash.com/@helloquence?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/planning?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)</sup>
 
 
 Thanks to the generosity of the AI community and some specific teams who publish pre-trained neural network models, relatively cheap solutions for solving challenging tasks like this one are possible. Training such large neural-network models from scratch would costs tens of thousands of dollars, [in some cases, even hundreds of thousands](https://syncedreview.com/2019/06/27/the-staggering-cost-of-training-sota-ai-models/). Fine-tuning a pre-trained model on a new task might take a few hours on a single GPU. And I'll do just that.
@@ -78,7 +78,7 @@ The length of jokes varies a lot in the dataset - there are many short sequences
 # Results and conclusions
 
 ![laughing_toy](/img/gpt2_finetuning/laughing_toy.jpg)
-<sup>Photo by [Marcela Rogante](https://unsplash.com/@marchuri?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/)</sup>
+<sup>Photo by [Marcela Rogante](https://unsplash.com/@marchuri?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/laugh?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)</sup>
 
 It is a hard problem to teach AI to generate a text that'll seem funny to a human, and I think that it is much harder than to generate a coherent text. Even for a human, it is not easy to do - it takes a special kind of creativity, understanding of the context, and even understanding of human psychology. Feeding many jokes to a language model might not be sufficient for the model actually to learn what makes something funny. It might require more sophisticated techniques and a lot more data to train human-level joking models. 
 
