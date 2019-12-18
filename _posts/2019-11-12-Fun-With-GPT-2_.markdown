@@ -77,6 +77,9 @@ The length of jokes varies a lot in the dataset - there are many short sequences
 
 # Results and conclusions
 
+![laughing_toy](/img/gpt2_finetuning/laughing_toy.jpg)
+<sup>Photo by [Marcela Rogante](https://unsplash.com/@marchuri?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/)</sup>
+
 It is a hard problem to teach AI to generate a text that'll seem funny to a human, and I think that it is much harder than to generate a coherent text. Even for a human, it is not easy to do - it takes a special kind of creativity, understanding of the context, and even understanding of human psychology. Feeding many jokes to a language model might not be sufficient for the model actually to learn what makes something funny. It might require more sophisticated techniques and a lot more data to train human-level joking models. 
 
 **Nevertheless, it is hilarious to see this language model trying. Once in awhile, the model manages to generate a funny human-level joke.** 
