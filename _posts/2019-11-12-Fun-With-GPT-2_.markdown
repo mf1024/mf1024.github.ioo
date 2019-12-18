@@ -4,8 +4,9 @@ title: "Teaching GPT-2 a sense of humor - Fine-tuning large Transformer models o
 comments: true
 ---
 
-![laughing_horse](/img/gpt2_finetuning/laughing_horse.jpg)
-<sup>Photo by [Dan Cook](https://unsplash.com/@dan_scape?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/)</sup>
+![laughing_kid](/img/gpt2_finetuning/laugh.jpg)
+<sup>Photo by [Ben White](https://unsplash.com/@benwhitephotography?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/)</sup>
+
 
 In this post, I demonstrate how you can use pre-trained GPT-2 to generate text and then fine-tune it on a specific language modeling task using a single GPU. In this case, I try to teach the model to be funny by fine-tuning it on a jokes dataset. 
 
